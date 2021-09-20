@@ -32,7 +32,6 @@ class Desafio3ApplicationTests {
         Assertions.assertNotEquals(0, products.size());
         Assertions.assertEquals(3000, products.size());
 
-
     }
 
 }

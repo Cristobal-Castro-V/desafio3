@@ -1,5 +1,6 @@
 package desafio.devoptopus.desafio3.service.implementation;
 
+import desafio.devoptopus.desafio3.discount.DiscountNext;
 import desafio.devoptopus.desafio3.document.Product;
 import desafio.devoptopus.desafio3.exception.NotFoundException;
 import desafio.devoptopus.desafio3.repository.ProductRepository;
@@ -29,18 +30,15 @@ public class ProductServiceImpl implements ProductService {
         if (result) {
             if (id != null) {
                 Product product = productRepository.findById(id);
-
-                if (isPalindrome) {
-                    product.setDiscount(Util.calDiscount(product.getPrice()));
-                }
                 if (product != null) {
+                    DiscountNext discountNext = new DiscountNext();
+                    discountNext.check(product);
                     listProduct.add(product);
                 }
-
             } else {
                 List<Product> product = productRepository.findByRegex(search);
                 if (isPalindrome) {
-                    product.forEach(p -> p.setDiscount(Util.calDiscount(p.getPrice())));
+                    product.forEach(p -> p.setDiscount(Util.palindromeDiscount(p.getPrice())));
                 }
                 listProduct.addAll(product);
             }

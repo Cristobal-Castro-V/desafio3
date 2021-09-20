@@ -55,7 +55,8 @@ class ProductControllerTest {
 
         when(productService.findProducts("asd")).thenReturn(productList);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/products?search=asd").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/products?search=asd")
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(productList))).andExpect(status().isOk());
 
         verify(productService).findProducts("asd");

@@ -10,6 +10,7 @@ public class Util {
     private Util(){
 
     }
+
     public static boolean isPalindrome(String originalString) {
 
         String tempString = originalString.replaceAll("\\s+", "").toLowerCase();
@@ -19,10 +20,33 @@ public class Util {
         }
         return IntStream.range(0, tempString.length() / 2)
                 .noneMatch(i -> tempString.charAt(i) != tempString.charAt(tempString.length() - i - 1));
-
     }
 
-    public static double calDiscount(double price) {
-        return price * 0.5;
+    public static boolean isOdd(Long number){
+        if (number % 2 != 0){
+            return true;
+        }
+        return false;
     }
+
+    public static boolean isPrime(Long number) {
+        if(number == 0 || number == 1){
+            return false;
+        }
+        return IntStream.rangeClosed(2, (int) (Math.sqrt(number)))
+                .allMatch(n -> number % n != 0);
+    }
+
+    public static double palindromeDiscount(double number) {
+        return number * 0.5;
+    }
+
+    public static double primeDiscount(double number) {
+        return number * 0.85;
+    }
+
+    public static double oddDiscount(double number) {
+        return number * 0.9;
+    }
+
 }
