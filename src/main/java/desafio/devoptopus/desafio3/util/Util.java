@@ -37,16 +37,4 @@ public class Util {
                 .allMatch(n -> number % n != 0);
     }
 
-    public static double palindromeDiscount(double number) {
-        return number * 0.5;
-    }
-
-    public static double primeDiscount(double number) {
-        return number * 0.85;
-    }
-
-    public static double oddDiscount(double number) {
-        return number * 0.9;
-    }
-
 }

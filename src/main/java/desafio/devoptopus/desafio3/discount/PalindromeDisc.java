@@ -4,20 +4,18 @@ import desafio.devoptopus.desafio3.document.Product;
 import desafio.devoptopus.desafio3.util.Util;
 
 public class PalindromeDisc extends DiscountCheck{
-
-    private boolean isPalindrome;
-    public PalindromeDisc(String search){
-        isPalindrome = Util.isPalindrome(search);
-    }
-
-    public PalindromeDisc() {
-        
+    private final double discountPalindrome;
+    private final String str;
+    public PalindromeDisc(String str,double discountPalindrome){
+        this.str = str;
+        this.discountPalindrome = discountPalindrome;
     }
 
     @Override
     public Product check(Product product) {
-        if(this.isPalindrome){
-            product.setDiscount(product.getPrice()*0.5);
+        boolean isPalindrome = Util.isPalindrome(str);
+        if(isPalindrome){
+            product.setDiscount(product.getPrice()*discountPalindrome);
             return product;
         }
         return checkNext(product);

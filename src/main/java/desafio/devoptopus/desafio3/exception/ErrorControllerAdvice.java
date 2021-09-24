@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 
 @RestControllerAdvice
 public class ErrorControllerAdvice {
-
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleAll(final Exception ex, final WebRequest request) {
@@ -24,6 +24,12 @@ public class ErrorControllerAdvice {
         return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 
+    @ExceptionHandler(HttpClientErrorException.BadRequest.class)
+    protected ResponseEntity<Object> handleBadRequestSend(
+            final Exception ex, final WebRequest request) {
+        final ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Invalid Request");
+        return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
 
 }
 

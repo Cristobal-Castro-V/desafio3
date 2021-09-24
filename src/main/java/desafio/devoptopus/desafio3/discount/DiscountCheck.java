@@ -6,11 +6,9 @@ public abstract class DiscountCheck implements DiscountManager {
 
     private DiscountCheck next;
 
-    public abstract Product check(Product product);
-
-    public DiscountCheck setNext(DiscountCheck dm){
-        this.next = dm;
-        return dm;
+    public DiscountCheck setNext(DiscountCheck discountCheck){
+        this.next = discountCheck;
+        return discountCheck;
     }
 
     protected Product checkNext(Product product){
